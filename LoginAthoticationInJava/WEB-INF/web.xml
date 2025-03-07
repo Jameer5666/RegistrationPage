@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+    
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>com.java.jdev.servlets.SignupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/Signup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SigninServlet</servlet-name>
+        <servlet-class>com.java.jdev.servlets.SigninServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninServlet</servlet-name>
+        <url-pattern>/Signin</url-pattern>
+    </servlet-mapping>
+	
+	
+	<servlet>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <servlet-class>com.java.jdev.servlets.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <url-pattern>/fp</url-pattern>
+    </servlet-mapping>
+	
+    
+    <welcome-file-list>
+        <welcome-file>./signup.html</welcome-file>
+    </welcome-file-list>
+    
+</web-app>

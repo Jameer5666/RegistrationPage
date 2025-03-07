@@ -1,0 +1,43 @@
+package com.java.jdev.servlets;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.io.PrintStream;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
+public class SignupServlet extends HttpServlet { 
+	
+     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.setErr(new PrintStream(new FileOutputStream("../../err1.log")));
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "db_user1", "db1");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO users_auth(username, password) VALUES(?, ?)");
+            ps.setString(1, username);
+            ps.setString(2, password);
+            
+            int result = ps.executeUpdate();
+            if (result > 0) {
+                response.sendRedirect("./login.html");
+            } else {
+                response.getWriter().println("Signup Failed");
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+}
